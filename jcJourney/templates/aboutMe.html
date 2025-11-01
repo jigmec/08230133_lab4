@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Me - Jigme Choden</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffe6f0 0%, #ffccdd 50%, #ffb3c6 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Floating elements */
+        .floating {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+
+        .floating:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .floating:nth-child(4) {
+            width: 50px;
+            height: 50px;
+            top: 30%;
+            left: 85%;
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        .navbar {
+            background: rgba(255, 105, 180, 0.9);
+            color: white;
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        .navbar a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            width: 85%;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 105, 180, 0.3);
+        }
+
+        .profile-pic { 
+            text-align: center; 
+            margin: 20px 0; 
+        }
+        .profile-pic img {
+            width: 200px; 
+            height: 200px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 4px solid #ff69b4;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+        }
+
+        h1 {
+            color: #d63384;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #e91e63;
+            border-bottom: 2px solid #ff69b4;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #c2185b;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            background: rgba(255, 105, 180, 0.1);
+            margin: 8px 0;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border-left: 3px solid #ff69b4;
+        }
+
+        /* Screenshots Section Styles */
+        .screenshots-section {
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            border: 2px dashed #ff69b4;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .screenshot-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+        }
+
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #ffe6f0, #ffccdd);
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            border: 2px solid #ff69b4;
+            font-size: 18px;
+            color: #d63384;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating background elements -->
+    <div class="floating"></div>
+    <div class="floating"></div>
+    <div class="floating"></div>
+    <div class="floating"></div>
+    
+    <div class="navbar">
+        <a href="{% url 'jcJourney:index' %}">Home</a>
+        <a href="{% url 'jcJourney:about_me' %}">About Me</a>
+    </div>
+    
+    <div class="container">
+        <h1>About Jigme Choden</h1>
+        
+        {% if about_me %}
+            <!-- Profile Picture -->
+            {% if about_me.profile_picture %}
+            <div class="profile-pic">
+                <img src="{{ about_me.profile_picture.url }}" 
+                     alt="Profile Picture of {{ about_me.full_name }}">
+            </div>
+            {% endif %}
+            
+            <div class="profile">
+                <h2>{{ about_me.full_name }}</h2>
+                <p><strong>Student ID:</strong> {{ about_me.student_id }}</p>
+                <p><strong>Email:</strong> {{ about_me.email }}</p>
+                
+                <h3>Bio</h3>
+                <p>{{ about_me.bio }}</p>
+                
+                <h3>Interests</h3>
+                <ul>
+                    {% for interest in interests_list %}
+                    <li>{{ interest }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <h3>Skills</h3>
+                <ul>
+                    {% for skill in skills_list %}
+                    <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <p>Profile information coming soon!</p>
+        {% endif %}
+
+                       
+</body>
+</html>

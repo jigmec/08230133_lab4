@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jigme Choden - Learning Journey</title>
+    <style>
+        /* 
+        MAIN STYLING FOR PERSONAL LEARNING JOURNEY WEBSITE
+        Developer: Jigme Choden
+        Purpose: Homepage displaying learning progress and admin interface
+        Color Scheme: Pink gradient theme for visual appeal
+        */
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            /* Pink gradient background for entire page */
+            background: linear-gradient(135deg, #ffe6f0 0%, #ffccdd 50%, #ffb3c6 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* FLOATING ANIMATION ELEMENTS */
+        /* Creates animated floating circles in background */
+        .floating {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Position individual floating elements */
+        .floating:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+
+        .floating:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .floating:nth-child(4) {
+            width: 50px;
+            height: 50px;
+            top: 30%;
+            left: 85%;
+            animation-delay: 1s;
+        }
+
+        /* Floating animation keyframes */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        /* NAVIGATION BAR STYLING */
+        .navbar {
+            background: rgba(255, 105, 180, 0.9); /* Semi-transparent pink */
+            color: white;
+            padding: 1rem;
+            backdrop-filter: blur(10px); /* Glass morphism effect */
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        .navbar a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px); /* Lift effect on hover */
+        }
+
+        /* MAIN CONTENT CONTAINER */
+        .container {
+            width: 85%;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            backdrop-filter: blur(10px); /* Glass morphism effect */
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+            z-index: 1; /* Ensure content appears above floating elements */
+        }
+
+        /* LEARNING JOURNEY ITEM STYLING */
+        .learning-item {
+            border-left: 5px solid #ff69b4; /* Default pink border */
+            padding: 20px;
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            transition: all 0.3s ease; /* Smooth hover transition */
+        }
+
+        .learning-item:hover {
+            transform: translateX(10px); /* Slide effect on hover */
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        /* Difficulty level color coding */
+        .beginner { border-left-color: #27ae60; } /* Green for beginner */
+        .intermediate { border-left-color: #f39c12; } /* Orange for intermediate */
+        .advanced { border-left-color: #e74c3c; } /* Red for advanced */
+
+        /* HEADING STYLES */
+        h1 {
+            color: #d63384;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* SCREENSHOTS SECTION STYLES */
+        /* Section for displaying admin interface screenshots */
+        .screenshots-section {
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            border: 2px dashed #ff69b4; /* Dashed border for visual separation */
+        }
+
+        /* Grid layout for screenshot items */
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .screenshot-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-item:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+        }
+
+        /* Placeholder for screenshots not yet uploaded */
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #ffe6f0, #ffccdd);
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            border: 2px solid #ff69b4;
+            font-size: 18px;
+            color: #d63384;
+            margin: 15px 0;
+        }
+
+        /* Styling for actual screenshot images */
+        .screenshot-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover; /* Maintain aspect ratio while filling container */
+            border-radius: 10px;
+            border: 2px solid #ff69b4;
+        }
+
+        /* FOOTER STYLES */
+        .footer {
+            background: rgba(255, 105, 180, 0.9);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+            backdrop-filter: blur(10px);
+            border-top: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            color: white;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffe6f0;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- FLOATING BACKGROUND ELEMENTS -->
+    <!-- Animated circles for visual appeal -->
+    <div class="floating"></div>
+    <div class="floating"></div>
+    <div class="floating"></div>
+    <div class="floating"></div>
+    
+    <!-- MAIN NAVIGATION -->
+    <div class="navbar">
+        <a href="{% url 'jcJourney:index' %}">Home</a>
+        <a href="{% url 'jcJourney:about_me' %}">About Me</a>
+    </div>
+    
+    <!-- MAIN CONTENT AREA -->
+    <div class="container">
+        <!-- PAGE HEADER -->
+        <h1>My Learning Journey - Jigme Choden</h1>
+        <p>Tracking my progress in web development with Django</p>
+        
+        <!-- LEARNING JOURNEY ITEMS LOOP -->
+        <!-- Displays all learning items from database -->
+        {% for item in learning_items %}
+        <div class="learning-item {{ item.difficulty_level }}">
+            <h3>{{ item.title }}</h3>
+            <p><strong>Category:</strong> {{ item.get_category_display }}</p>
+            <p><strong>Learned on:</strong> {{ item.date_learned }}</p>
+            <p>{{ item.description }}</p>
+            <!-- Completion status with color coding -->
+            <span style="color: {% if item.is_completed %}green{% else %}orange{% endif %};">
+                {% if item.is_completed %}✓ Completed{% else %}● In Progress{% endif %}
+            </span>
+        </div>
+        {% empty %}
+        <!-- Displayed when no learning items exist -->
+        <p>No learning items yet. Add them through the admin panel!</p>
+        {% endfor %}
+
+        <!-- DYNAMIC ADMIN SCREENSHOTS SECTION -->
+        <!-- Displays admin interface screenshots from database -->
+        {% if screenshots %}
+        <div class="screenshots-section">
+            <h2>Admin Interface</h2>
+            <div class="screenshot-grid">
+                <!-- Loop through each screenshot item -->
+                {% for screenshot in screenshots %}
+                <div class="screenshot-item">
+                    <h4>{{ screenshot.title }}</h4>
+                    
+                    <!-- Display actual image if uploaded, otherwise show placeholder -->
+                    {% if screenshot.image %}
+                        <img src="{{ screenshot.image.url }}" 
+                             alt="{{ screenshot.title }}" 
+                             class="screenshot-image">
+                    {% else %}
+                        <div class="screenshot-placeholder">
+                            📸 Upload Screenshot
+                        </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- WEBSITE FOOTER -->
+    <div class="footer">
+        <div class="footer-content">
+            <p><strong>Jigme Choden - Personal Learning Journey</strong></p>
+            <p>B.Ed IT Student | Samtse College of Education</p>
+            <p>Built with Django | MVT Architecture</p>
+            <div class="footer-links">
+                <a href="{% url 'jcJourney:index' %}">Home</a>
+                <a href="{% url 'jcJourney:about_me' %}">About Me</a>
+                <a href="/admin">Admin Panel</a>
+            </div>
+            <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
+                &copy; 2024 Jigme Choden. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
