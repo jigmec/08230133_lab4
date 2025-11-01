@@ -190,7 +190,45 @@
             color: #d63384;
             margin: 15px 0;
         }
-    </style>
+    
+    /* FOOTER STYLES */
+        .footer {
+            background: rgba(255, 105, 180, 0.9);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+            backdrop-filter: blur(10px);
+            border-top: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            color: white;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffe6f0;
+            text-decoration: underline;
+        }
+        </style>
 </head>
 <body>
     <!-- Floating background elements -->
@@ -241,6 +279,22 @@
         {% else %}
             <p>Profile information coming soon!</p>
         {% endif %}
+        <!-- WEBSITE FOOTER -->
+    <div class="footer">
+        <div class="footer-content">
+            <p><strong>Jigme Choden - Personal Learning Journey</strong></p>
+            <p>B.Ed IT Student | Samtse College of Education</p>
+            <p>Built with Django | MVT Architecture</p>
+            <div class="footer-links">
+                <a href="{% url 'jcJourney:index' %}">Home</a>
+                <a href="{% url 'jcJourney:about_me' %}">About Me</a>
+                <a href="/admin">Admin Panel</a>
+            </div>
+            <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
+                &copy; 2025 Jigme Choden. All rights reserved.
+            </p>
+        </div>
+    </div>
 
                        
 </body>
